@@ -1,0 +1,13 @@
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\daots.dll.config
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\daots.dll
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\daots.pdb
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\daots.xml
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\entidad.dll
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\entidad.pdb
+C:\Users\CHECA\Desktop\login\daots\bin\Debug\entidad.xml
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\datos.vbprojResolveAssemblyReference.cache
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\daots.Resources.resources
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\datos.vbproj.GenerateResource.Cache
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\daots.dll
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\daots.xml
+C:\Users\CHECA\Desktop\login\daots\obj\Debug\daots.pdb

@@ -1,0 +1,179 @@
+/******** TABLA USUARIO EN LA BASE DE DATOS********/
+create table Usuario
+(
+   id_login int identity primary key,
+   USUARIO varchar(20) NOT NULL CONSTRAINT chUser check(USUARIO <> ''),
+   CONTRASEÑA varchar(20) NOT NULL CONSTRAINT chConrtra check(CONTRASEÑA <> ''),
+   ACCESO varchar(20) NOT NULL CONSTRAINT chAcceso check(ACCESO <> '' AND  (ACCESO IN('Administrador','Usuario')))
+)
+/******** PROCESO ALMACENADO EN LA TABLA DE DATOS********/
+create proc Acceso
+@user varchar(20),
+@contra  varchar(20)
+as
+Select * from Usuario
+where USUARIO =  @user AND CONTRASEÑA =@contra
+go
+
+/******** EN LA CLASE DE DATOS********/
+
+public DataTable Login(string usu,string con)
+{
+            DataTable login = new DataTable("Login");
+            SqlConnection sql = new SqlConnection();
+            try
+            {
+                sql.ConnectionString = Conexion.con;
+ 
+                SqlCommand sqlCm = new SqlCommand("Acceso", sql);
+                sqlCm.CommandType = CommandType.StoredProcedure;
+ 
+                sqlCm.Parameters.Add("@user", SqlDbType.VarChar).Value = usu;
+                sqlCm.Parameters.Add("@contra", SqlDbType.VarChar).Value = con;
+ 
+                SqlDataAdapter sqlAdp = new SqlDataAdapter(sqlCm);
+                sqlAdp.Fill(login);
+ 
+            }
+            catch
+            {
+                login = null;
+            }
+            return login;
+}
+
+/******** EN LA CLASE DE NEGOCIO********/
+public static DataTable Acceso(string us,string  con)
+{
+            DLogin login = new DLogin();
+            return login.Login(us, con);
+}
+
+/******** EN LA CLASE DE DE PRESENTACION********/
+private void button1_Click(object sender, EventArgs e)
+{
+            DataTable tabla = NLogin.Acceso(textBox1.Text,textBox2.Text);
+            if (tabla.Rows.Count == 0)
+            {
+                MessageBox.Show("No existe el usuario", "Sistema Login", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                FrmInicio obj = new FrmInicio();
+                //Aqui obtenemos el tipo del acceso del usuario por si queremos poner restricciones en nuestra aplicación
+                obj.tipoUser = tabla.Rows[0][3].ToString();
+                obj.nombre = tabla.Rows[0][1].ToString();
+                obj.ShowDialog();
+                this.Hide();
+            }
+}
+
+
+/*****************LOGIN EN 4 CAPAS*************/ 
+Para empezar con el desarrollo del programa es necesario tener instalados los lenguajes de programación de SQL Server y Visual Studio. Para ello se desarrollara en 4 capas (Capa Entidad, Capa de Datos, Capa de Negocio y La Capa de Presentación).
+Lo primero que debemos de hacer es crear las respectivas (Librerías) o archivos (.dll).
+      -CapaEntidad.
+      -CapaDatos.
+      -CapaNegocio.
+      -CapaPresentacion(El formulario)
+
+1.-EL PROCEDIMIENTO ALMACENADO (SQL Server).
+
+    create proc Logeo
+    @Usuario varchar(20),
+    @Contrasenia varchar(20)
+    As
+    where usuario=@usuario and password=@contrasenia
+
+2.-CAPA ENTIDAD(Visual C#).
+
+    public class EntidadLogin
+    {
+        public string Usuario { get; set; }
+        public string Contrasenia { get; set; }
+    }
+
+
+3.-CAPA DE DATOS (Visual C#).
+    //importamos los siguientes packs.
+    using System.Data;
+    using System.Data.SqlClient;
+    using CapaEntidad;
+  
+     public class DatosLogin
+    {
+        SqlConnection cn = new SqlConnection(Conexion.IESGA2017);
+        public DataTable Login(EntidadLogin e)
+        {
+            using (SqlCommand cmd = new SqlCommand("Logeo", cn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@Usuario", e.Usuario);
+                cmd.Parameters.AddWithValue("@Contrasenia", e.Contrasenia);
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                {
+                    DataTable tbl = new DataTable();
+                    da.Fill(tbl);
+                    return tbl;
+                }
+            }
+        }
+    }
+
+4.-CAPA NEGOCIO (Visual C#).
+
+//Usamos los siguientes Packs.
+  using System.Data;
+  using CapaDatos;
+  using CapaEntidad;
+
+    public class NegocioLogin
+    {
+        DatosLogin objDatos = new DatosLogin();
+        public DataTable LogonN(EntidadLogin e)
+        {
+            return objDatos.Login(e);
+        }
+    }
+
+5.-CAPA DE  PRESENTACIÓN (Visual C#).
+  // Usamos los siguientes Packs.
+  using CapaEntidad;
+  using CapaNegocio;
+
+public partial class FrmLogin : Form
+    {
+        public FrmLogin()
+        {
+            InitializeComponent();
+        }
+        EntidadLogin objEntidad = new EntidadLogin();
+        NegocioLogin objNegocio = new NegocioLogin();
+        void Login()//Creando un procedimiento.
+        {
+
+            objEntidad.Usuario = txtUsuario.Text;
+            objEntidad.Contrasenia = txtContrasenia.Text;
+
+            DataTable tbl = objNegocio.LogonN(objEntidad);
+            if (tbl.Rows.Count == 0)
+            {
+                MessageBox.Show("No cohensiden Usuario y Contraseña \n Intentelo nuevamente",
+                    "Acceso al Sistema", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtUsuario.Text = "";
+                txtContrasenia.Text = "";
+                txtUsuario.Focus();
+            }
+            else
+            {
+                MessageBox.Show("Bienvenido al Sistema", "Acceso al Sistema",                        MessageBoxButtons.OK);
+                FrmMenuPrincilpal Frm = new FrmMenuPrincilpal();
+                Frm.Show();
+            }
+        }
+        private void btnIniciar_Click(object sender, EventArgs e)
+        {
+            Login();
+        }
+    }
+

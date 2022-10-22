@@ -1,0 +1,17 @@
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\presentacion.exe
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\presentacion.pdb
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\presentacion.xml
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\daots.dll
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\entidad.dll
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\daots.pdb
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\daots.xml
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\entidad.pdb
+C:\Users\CHECA\Desktop\login\presentacion\bin\Debug\entidad.xml
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.vbprojResolveAssemblyReference.cache
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.Form1.resources
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.MDIParent1.resources
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.Resources.resources
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.vbproj.GenerateResource.Cache
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.exe
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.xml
+C:\Users\CHECA\Desktop\login\presentacion\obj\Debug\presentacion.pdb

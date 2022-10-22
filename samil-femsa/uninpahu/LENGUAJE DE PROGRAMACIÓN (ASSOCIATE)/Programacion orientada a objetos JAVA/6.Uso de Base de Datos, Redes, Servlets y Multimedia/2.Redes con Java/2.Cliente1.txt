@@ -1,0 +1,23 @@
+import java.io.*;
+import java.net.*; 
+public class Cliente1{
+   	public static void main(String[] args){
+   		Socket yo = null;
+   		try {
+   			yo = new Socket("10.21.0.120",5000);
+   		} catch (UnknownHostException e){
+   			System.out.println(e.getMessage());
+   			System.exit(1);
+   		} catch (IOException e){
+   			System.out.println(e.getMessage());
+   			System.exit(1);
+   		}
+   		System.out.println("Ya se conecto al Servidor");
+   		try {
+   			yo.close(); 
+   		} catch (IOException e){
+   			System.out.println(e.getMessage());
+   			System.exit(1);
+   		}
+   	}
+}

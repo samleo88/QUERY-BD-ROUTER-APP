@@ -1,0 +1,13 @@
+USE[Administracion]
+
+SELECT * FROM  USUARIO
+WHERE LOGIN = 'com12i'
+
+SELECT * FROM Sesion
+--ORDER BY FechaAutenticacion
+WHERE IdUsuario = 'F957BA03-AAF6-49A5-A03F-FF4F7022684C'	
+
+--DELETE FROM Sesion
+WHERE IdSesion = '64E13C76-FAFD-46B5-9E62-BA5AB5645BBB'
+--WHERE FechaAutenticacion between '2020-01-22 05:00:00' and '2020-02-20 23:00:00'	
+

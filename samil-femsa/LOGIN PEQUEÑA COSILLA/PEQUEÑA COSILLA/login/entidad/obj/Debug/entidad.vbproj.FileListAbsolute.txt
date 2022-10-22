@@ -1,0 +1,8 @@
+C:\Users\CHECA\Desktop\login\entidad\bin\Debug\entidad.dll
+C:\Users\CHECA\Desktop\login\entidad\bin\Debug\entidad.pdb
+C:\Users\CHECA\Desktop\login\entidad\bin\Debug\entidad.xml
+C:\Users\CHECA\Desktop\login\entidad\obj\Debug\entidad.Resources.resources
+C:\Users\CHECA\Desktop\login\entidad\obj\Debug\entidad.vbproj.GenerateResource.Cache
+C:\Users\CHECA\Desktop\login\entidad\obj\Debug\entidad.dll
+C:\Users\CHECA\Desktop\login\entidad\obj\Debug\entidad.xml
+C:\Users\CHECA\Desktop\login\entidad\obj\Debug\entidad.pdb
